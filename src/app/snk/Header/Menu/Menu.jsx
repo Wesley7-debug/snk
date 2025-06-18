@@ -20,26 +20,44 @@ const Menu = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Animate menu size and position on toggle or screen size change
-  useEffect(() => {
-    //gsap.set(menuRef.current,{width:'10px', height:'20px',})
-    if (menuRef.current) {
-      gsap.to(menuRef.current, {
-        width: isActive ? (isMobile ? '100vw' : '480px') : (isMobile ? '50px' : '50px'),
-        height: isActive ? (isMobile ? '60vh' : '550px') : (isMobile ? '50px' : '20px'),
-        top: isActive ? (isMobile ? '0' : '-5px') : '0px',
-        opacity: isActive ? 1 : 0,
-        right: isActive ? (isMobile ? '0' : '-5px') : '0px',
-        duration: 0.75,
-        delay: isActive ? 0 : 0.35,
-         ease: 'power4.inOut',
-        position: 'fixed',
-        zIndex: 99,
-        overflow: 'hidden',
-        backgroundColor: '#ef4444', // red-400 from Tailwind for consistency
-      });
-    }
-  }, [isActive, isMobile]);
+const isInitialRender = useRef(true);
+
+useEffect(() => {
+  if (!menuRef.current) return;
+
+  if (isInitialRender.current) {
+    // On first render, set the styles immediately without animation
+    gsap.set(menuRef.current, {
+      width: isMobile ? (isActive ? '100vw' : '50px') : '480px',
+      height: isMobile ? (isActive ? '60vh' : '50px') : '550px',
+      top: isActive ? (isMobile ? '0' : '-5px') : '0px',
+      opacity: isActive ? 1 : 0,
+      right: isActive ? (isMobile ? '0' : '-5px') : '0px',
+      position: 'fixed',
+      zIndex: 99,
+      overflow: 'hidden',
+      backgroundColor: '#ef4444',
+    });
+    isInitialRender.current = false;  // Mark initial render done
+  } else {
+    // Animate only after initial render (on toggle)
+    gsap.to(menuRef.current, {
+      width: isActive ? (isMobile ? '100vw' : '480px') : (isMobile ? '50px' : '50px'),
+      height: isActive ? (isMobile ? '60vh' : '550px') : (isMobile ? '50px' : '20px'),
+      top: isActive ? (isMobile ? '0' : '-5px') : '0px',
+      opacity: isActive ? 1 : 0,
+      right: isActive ? (isMobile ? '0' : '-5px') : '0px',
+      duration: 0.75,
+      delay: isActive ? 0 : 0.35,
+      ease: 'power4.inOut',
+      position: 'fixed',
+      zIndex: 99,
+      overflow: 'hidden',
+      backgroundColor: '#ef4444',
+    });
+  }
+}, [isActive, isMobile]);
+
 
   return (
     <>

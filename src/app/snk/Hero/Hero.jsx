@@ -40,30 +40,30 @@ const allSplitLines = [];
   //gsap.set('.reavelers', { opacity: 1 });
 
 const ctx = gsap.context(() => {
-  window.scrollTo(0,0);
-reavelerTl
-  .to('.rf1', {
-    clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', // animates upward (top to top)
-    duration: 1.5,
-    ease:'power4.inOut',
-  })
-  .to('.rf2', {
-    clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', // animates downward (bottom to bottom)
-    duration: 1.5,
-    ease:'power4.inOut',
-  }, '<'); // play at the same time
+//   window.scrollTo(0,0);
+// reavelerTl
+//   .to('.rf1', {
+//     clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', // animates upward (top to top)
+//     duration: 1.5,
+//     ease:'power4.inOut',
+//   })
+//   .to('.rf2', {
+//     clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', // animates downward (bottom to bottom)
+//     duration: 1.5,
+//     ease:'power4.inOut',
+//   }, '<'); // play at the same time
 
 
-    scrolTl.to('.image1', { scale: 1, duration: 2, ease: 'power4.inOut' });
+//     scrolTl.to('.image1', { scale: 1, duration: 2, ease: 'power4.inOut' });
 
-    document.querySelectorAll('.img:not(:first-child)').forEach((img) => {
-      scrolTl.to(img, {
-        opacity: 1,
-        scale: 1,
-        duration: 1.25,
-        ease: 'power4.inOut',
-      }, '>-0.5');
-    });
+//     document.querySelectorAll('.img:not(:first-child)').forEach((img) => {
+//       scrolTl.to(img, {
+//         opacity: 1,
+//         scale: 1,
+//         duration: 1.25,
+//         ease: 'power4.inOut',
+//       }, '>-0.5');
+//     });
 
     mainTl.add(reavelerTl).add(scrolTl, '-=1.25').add(() => {
       // Remove non-main images
@@ -118,30 +118,22 @@ reavelerTl
 
   return (
     <section className="containesr w-screen h-screen relative overflow-hidden text-black">
-      {/* Revealer */}
+      {/* Revealer
       <div className=" reavelers fixed top-0 left-0 w-screen h-screen flexs flex-col z-10 opacity-1 pointer-events-none">
         <div className="reavealer rf1 flex-1 w-full bg-white"></div>
         <div className="reavealer rf2 flex-1 w-full bg-white"></div>
       </div>
 
       {/* Images Layer */}
-      <div className=" images absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full will-change-transform z-2">
-        <div className="img image1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] w-full h-full visible will-change-transform">
+      {/* <div className=" images  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full will-change-transform z-2">
+        <div className="img hidden image1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] w-full h-full visible will-change-transform">
           <img src="/images/load1.jpg" alt="" />
-        </div>
-        <div className="img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] w-full h-full visible opacity-0 will-change-transform">
+        </div> */}
+        {/* <div className="img hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] w-full h-full visible opacity-0 will-change-transform">
           <img src="/images/load2.jpg" alt="" />
-        </div>
-        <div className="img main absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] w-full h-full visible opacity-0 will-change-transform">
-          <img src="/images/load3.jpg" alt="" />
-        </div>
-        <div className="img main absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] w-full h-full visible opacity-0 will-change-transform">
-          <img src="/images/load4.jpg" alt="" />
-        </div>
-        <div className="img main absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[1.5] w-full h-full visible opacity-0 will-change-transform">
-          <img src="/images/load5.jpg" alt="" />
-        </div>
-      </div>
+        </div> */}
+     
+      
 
       {/* Hero Content */}
       <div className="hero relative w-screen bg-bg h-screen px-2">
@@ -177,6 +169,17 @@ reavelerTl
               <div className="lines"><h1>TWITTER</h1></div>
             </div>
           </div>
+        </div>
+        <div className="stacked-container">
+   <div className="img stacked main  w-full h-full visible opacity-0 will-change-transform">
+          <img src="/images/load3.jpg" alt="" />
+        </div>
+        <div className="img stacked main  w-full h-full visible opacity-0 will-change-transform">
+          <img src="/images/load4.jpg" alt="" />
+        </div>
+        <div className="img  stacked main  w-full h-full visible opacity-0 will-change-transform">
+          <img src="/images/load5.jpg" alt="" />
+        </div>
         </div>
       </div>
     </section>
