@@ -44,7 +44,7 @@ useEffect(() => {
     
 
       <div
-        className="w-screen h-[110vh] overflow-hidden relative bg-black"
+        className="w-screen  overflow-hidden relative bg-black"
         ref={sectionRef}
       >
 
